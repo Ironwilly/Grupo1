@@ -23,4 +23,12 @@ public class ArtistController {
             })
         );
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Artist> findone (@PathVariable Long id) {
+
+        return ResponseEntity
+                .of(repository.findById(id));
+
+    }
 }
