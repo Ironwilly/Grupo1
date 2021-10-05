@@ -6,9 +6,7 @@ import com.salesianostriana.dam.P01.repos.ArtistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,11 @@ public class SongController {
         return ResponseEntity
                 .ok()
                 .body(repository.findAll());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
