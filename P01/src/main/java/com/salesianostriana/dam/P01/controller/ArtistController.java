@@ -46,4 +46,11 @@ public class ArtistController {
         return ResponseEntity
                 .of(repository.findById(id));
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
