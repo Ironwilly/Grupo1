@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/song")
+@RequestMapping("/songs")
 @RequiredArgsConstructor
 public class SongController {
 
     private final SongRepository repository;
 
-    @GetMapping("/{id}")
+    @GetMapping("/songs/{id}")
 
     public ResponseEntity<Song> findOne(@PathVariable Long id) {
 
