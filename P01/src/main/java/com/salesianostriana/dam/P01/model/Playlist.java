@@ -20,7 +20,7 @@ public class Playlist {
     private Long id;
     private String name;
     private String descripcion;
-    private List<Song>;
+    private List<Song> listSongs;
 
 
 
