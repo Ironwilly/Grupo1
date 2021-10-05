@@ -1,6 +1,10 @@
 package com.salesianostriana.dam.P01.controller;
 
+import com.salesianostriana.dam.P01.dto.CreateSongDto;
+import com.salesianostriana.dam.P01.dto.SongDtoConverter;
+import com.salesianostriana.dam.P01.model.Artist;
 import com.salesianostriana.dam.P01.model.Song;
+import com.salesianostriana.dam.P01.repos.ArtistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,12 +19,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class SongController {
 
-    private final SongRepository repository;
+    private final SongRepository songRepository;
+    private final ArtistRepository artistRepository;
+    private final SongDtoConverter dtoConverter;
 
     @PostMapping("/")
-    public ResponseEntity<Song> create(@RequestBody Song nueva){
+    public ResponseEntity<Song> create(@RequestBody CreateSongDto dto){
+        if(dto.getArtistId() == null){
+            return ResponseEntity.badRequest().build();
+        }
+
+        Song nueva = dtoConverter.createSongDtoToSong(dto);
+        Artist artist = artistRepository.findById(dto.getArtistId()).orElse(null);
+
+        nueva.setArtist(artist);
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .build();
+                .body(songRepository.save(nueva));
     }
 }
