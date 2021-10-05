@@ -18,7 +18,7 @@ public class ArtistController {
 
     @GetMapping("/")
 
-    public ResponseEntity<List<Artist>> findall(){
+    public ResponseEntity<List<Artist>> findAll(){
 
         return ResponseEntity
                 .ok()
@@ -50,7 +50,7 @@ public class ArtistController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Artist> findone (@PathVariable Long id) {
+    public ResponseEntity<Artist> findOne (@PathVariable Long id) {
 
         return ResponseEntity
                 .of(repository.findById(id));
