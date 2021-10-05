@@ -7,5 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/song")
 @RequiredArgsConstructor
+
 public class SongController {
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Song> edit (
+           Request
+    )
 }
