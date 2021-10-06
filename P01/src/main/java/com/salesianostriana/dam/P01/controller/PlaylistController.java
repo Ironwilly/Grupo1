@@ -5,10 +5,10 @@ package com.salesianostriana.dam.P01.controller;
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class PlaylistController {
     public ResponseEntity<Playlist> create(@RequestBody Playlist nuevo) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(Repository.save(nuevo));
+                .body(repository.save(nuevo));
     }
 
 
