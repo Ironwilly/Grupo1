@@ -9,7 +9,7 @@ public class PlaylistDtoConverter {
     public Playlist createPlaylistDtoToPlaylist(CreatePlaylistDto dto){
         return  new Playlist(
                 dto.getName(),
-                dto.getDescripcion()
+                dto.getDescription()
         );
     }
 
@@ -17,7 +17,7 @@ public class PlaylistDtoConverter {
         return GetPlaylistDto
                 .builder()
                 .name(p.getName())
-                .descripcion(p.getDescripcion())
+                .description(p.getDescription())
                 .build();
     }
 }

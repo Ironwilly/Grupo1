@@ -56,7 +56,7 @@ public class PlaylistController {
         return ResponseEntity.of(
                 playlistRepository.findById(editada.getId()).map(p -> {
                     p.setName(dto.getName());
-                    p.setDescripcion(dto.getDescripcion());
+                    p.setDescription(dto.getDescription());
                     return p;
 
                 })

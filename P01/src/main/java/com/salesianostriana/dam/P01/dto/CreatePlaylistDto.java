@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class CreatePlaylistDto {
 
     private String name;
-    private String descripcion;
+    private String description;
     private Long songId;
 }

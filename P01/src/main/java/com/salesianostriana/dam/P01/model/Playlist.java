@@ -19,15 +19,15 @@ public class Playlist {
     private Long id;
 
     private String name;
-    private String descripcion;
+    private String description;
     @Column
     @ElementCollection
     private List<Song> listSongs;
 
 
-    public Playlist(String name, String descripcion) {
+    public Playlist(String name, String description) {
         this.name = name;
-        this.descripcion = descripcion;
+        this.description = description;
 
     }
 }
