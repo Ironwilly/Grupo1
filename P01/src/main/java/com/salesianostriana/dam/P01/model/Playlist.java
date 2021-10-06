@@ -25,7 +25,4 @@ public class Playlist {
     private List<Song> listSongs;
 
 
-
-
-
 }
