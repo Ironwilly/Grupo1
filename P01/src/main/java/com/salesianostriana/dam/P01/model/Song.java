@@ -22,12 +22,10 @@ public class Song {
 
     private String album;
     private String year;
-    private Long artistId;
 
-    public Song(String title, String album, String year, Long artistId) {
+    public Song(String title, String album, String year) {
         this.title = title;
         this.album = album;
         this.year = year;
-        this.artistId = artistId;
     }
 }

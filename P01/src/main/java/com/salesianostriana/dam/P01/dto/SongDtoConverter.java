@@ -10,8 +10,7 @@ public class SongDtoConverter {
         return new Song(
                 dto.getTitle(),
                 dto.getAlbum(),
-                dto.getYear(),
-                dto.getArtistId()
+                dto.getYear()
         );
     }
 
