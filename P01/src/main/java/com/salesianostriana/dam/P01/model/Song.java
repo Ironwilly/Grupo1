@@ -15,17 +15,19 @@ public class Song {
     @GeneratedValue
     private Long id;
 
-    private String tittle;
+    private String title;
 
     @ManyToOne
     private Artist artist;
 
     private String album;
     private String year;
+    private Long artistId;
 
-    public Song(String tittle, String album, String year) {
-        this.tittle = tittle;
+    public Song(String title, String album, String year, Long artistId) {
+        this.title = title;
         this.album = album;
         this.year = year;
+        this.artistId = artistId;
     }
 }
