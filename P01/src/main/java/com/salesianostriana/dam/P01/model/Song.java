@@ -23,9 +23,8 @@ public class Song {
     private String album;
     private String year;
 
-    public Song(String tittle, Artist artist, String album, String year) {
+    public Song(String tittle, String album, String year) {
         this.tittle = tittle;
-        this.artist = artist;
         this.album = album;
         this.year = year;
     }
