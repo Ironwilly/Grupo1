@@ -66,7 +66,7 @@ public class PlaylistController {
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        repository.deleteById(id);
+        playlistRepository.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
