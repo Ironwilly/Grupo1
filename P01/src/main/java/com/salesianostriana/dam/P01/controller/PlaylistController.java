@@ -18,7 +18,7 @@ public class PlaylistController {
 
     private final PlaylistRepository repository;
 
-    @GetMapping("/lists")
+    @GetMapping("/")
     public ResponseEntity<List<Playlist>> findAll(){
 
         return ResponseEntity.ok().body(repository.findAll());
