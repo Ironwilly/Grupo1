@@ -16,10 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -64,14 +61,8 @@ public class SongController {
                 .body(repository.findAll());
     }
 
-    private final SongRepository repository;
 
-    @GetMapping("/{id}")
-
-    public ResponseEntity<Song> findOne(@PathVariable Long id) {
-
-        return ResponseEntity.of(repository.findById(id));
-    }
+    
 
     @PutMapping("/{id}")
     public ResponseEntity<Song> edit(@RequestBody Song song, @PathVariable Long id){
@@ -84,7 +75,11 @@ public class SongController {
                 })
         );
     }
-
-
+  
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
