@@ -17,11 +17,9 @@ public class Song {
 
     private String tittle;
 
-    
     @ManyToOne
     private Artist artist;
 
     private String album;
-
     private String year;
 }
