@@ -34,5 +34,17 @@ public class PlaylistController {
                 .body(repository.save(nuevo));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Playlist> edit(@RequestBody Playlist playlist,@PathVariable Long id){
+
+        return  ResponseEntity.of(
+                repository.findById(id).map(p -> {
+                    p.setName(playlist.getName());
+                    p.setDescripcion((playlist.getDescripcion()));
+                    return p;
+                })
+        );
+    }
+
 
 }

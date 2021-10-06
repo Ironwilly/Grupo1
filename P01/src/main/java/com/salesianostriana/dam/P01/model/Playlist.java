@@ -25,7 +25,9 @@ public class Playlist {
     private List<Song> listSongs;
 
 
+    public Playlist(String name, String descripcion) {
+        this.name = name;
+        this.descripcion = descripcion;
 
-
-
+    }
 }
