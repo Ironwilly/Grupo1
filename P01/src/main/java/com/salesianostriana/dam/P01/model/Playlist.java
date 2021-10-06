@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,7 +20,9 @@ public class Playlist {
 
     private String name;
     private String descripcion;
-    private List<Song>;
+    @Column
+    @ElementCollection
+    private List<Song> listSongs;
 
 
 
