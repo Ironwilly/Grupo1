@@ -20,8 +20,8 @@ public class Playlist {
 
     private String name;
     private String descripcion;
-    @Column
-    @ElementCollection
+
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Song> listSongs;
 
 
