@@ -48,9 +48,7 @@ public class SongController {
     private final SongRepository repository;
 
     @GetMapping("/{id}")
-
     public ResponseEntity<Song> findOne(@PathVariable Long id) {
-
         return ResponseEntity.of(repository.findById(id));
     }
 
