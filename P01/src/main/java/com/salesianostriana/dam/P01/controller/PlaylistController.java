@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.P01.controller;
 
 
+
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,13 @@ public class PlaylistController {
         return ResponseEntity.ok().body(repository.findAll());
 
 
+    }
+  
+  @PostMapping("/")
+    public ResponseEntity<Playlist> create(@RequestBody Playlist nuevo) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(Repository.save(nuevo));
     }
 
 
