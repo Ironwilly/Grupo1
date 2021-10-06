@@ -1,19 +1,38 @@
 package com.salesianostriana.dam.P01.controller;
 
+
+
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
-import org.aspectj.apache.bcel.Repository;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
+@RestController
+@RequestMapping("/lists")
+@RequiredArgsConstructor
 public class PlaylistController {
 
-    @PostMapping("/")
+    private final PlaylistRepository repository;
+
+    @GetMapping("/")
+    public ResponseEntity<List<Playlist>> findAll(){
+
+        return ResponseEntity.ok().body(repository.findAll());
+
+
+    }
+  
+  @PostMapping("/")
     public ResponseEntity<Playlist> create(@RequestBody Playlist nuevo) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(Repository.save(nuevo));
     }
+
+
 }
