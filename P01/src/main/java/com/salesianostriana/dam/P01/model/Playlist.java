@@ -15,15 +15,14 @@ import java.util.List;
 public class Playlist {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String description;
-    @Column
-    @ElementCollection
+
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Song> listSongs;
+    private List<Song> songs;
 
 
     public Playlist(String name, String description) {

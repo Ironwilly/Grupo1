@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Song {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String title;
