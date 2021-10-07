@@ -18,6 +18,11 @@ public class ArtistController {
 
     @GetMapping("/")
     public ResponseEntity<List<Artist>> findAll(){
+        if(repository.findAll().isEmpty()){
+            return ResponseEntity
+                    .noContent()
+                    .build();
+        }
         return ResponseEntity
                 .ok()
                 .body(repository.findAll());
