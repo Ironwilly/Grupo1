@@ -1,14 +1,10 @@
 package com.salesianostriana.dam.P01.controller;
 
-import com.salesianostriana.dam.P01.dto.*;
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.dto.CreatePlaylistDto;
 import com.salesianostriana.dam.P01.dto.PlaylistDtoConverter;
 import com.salesianostriana.dam.P01.model.Artist;
-import com.salesianostriana.dam.P01.model.Song;
-import com.salesianostriana.dam.P01.repos.ArtistRepository;
-import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +14,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +21,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/lists")
@@ -71,15 +65,9 @@ public class PlaylistController {
                     description = "No se ha encontrado la playlist indicada",
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Artist.class))})})
-    @GetMapping("/list/{id}")
-    public ResponseEntity<?> GetPlaylistDto(@RequestBody Playlist playlist,
-                                            @PathVariable Long id) {
-
-        Optional<Playlist> playlistActual = playlistRepository.findById(id);
-
-        playlistRepository.save(playlistActual.get());
-
-        return ResponseEntity.ok().body(playlistActual.get());
+    @GetMapping("/{id}")
+    public ResponseEntity<Playlist> findOnePlaylist(@PathVariable Long id) {
+        return ResponseEntity.of(playlistRepository.findById(id));
     }
 
 
@@ -121,19 +109,13 @@ public class PlaylistController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Artist.class))})})
     @PutMapping("/{id}")
-    public ResponseEntity<Playlist> edit(@RequestBody CreatePlaylistDto dto, @PathVariable Long id) {
-        if (dto.getName() == null) {
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<Playlist> edit(@RequestBody Playlist playlist, @PathVariable Long id) {
 
-        }
-
-        Playlist editada = playlistDtoConverter.createPlaylistDtoToPlaylist(dto);
-        Song song = songRepository.findById(dto.getSongId()).orElse(null);
 
         return ResponseEntity.of(
-                playlistRepository.findById(editada.getId()).map(p -> {
-                    p.setName(dto.getName());
-                    p.setDescription(dto.getDescription());
+                playlistRepository.findById(id).map(p -> {
+                    p.setName(playlist.getName());
+                    p.setDescription(playlist.getDescription());
                     return p;
 
                 })
