@@ -1,11 +1,8 @@
 package com.salesianostriana.dam.P01.controller;
 
 import com.salesianostriana.dam.P01.dto.CreateSongDto;
+import com.salesianostriana.dam.P01.dto.PutSongDto;
 import com.salesianostriana.dam.P01.dto.SongDtoConverter;
-import com.salesianostriana.dam.P01.model.Artist;
-import com.salesianostriana.dam.P01.model.Song;
-import com.salesianostriana.dam.P01.repos.ArtistRepository;
-import com.salesianostriana.dam.P01.repos.SongRepository;
 import com.salesianostriana.dam.P01.model.Artist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.ArtistRepository;
@@ -15,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SongController {
 
-    private final SongRepository songRepository;
+    private final SongRepository repository;
     private final ArtistRepository artistRepository;
     private final SongDtoConverter dtoConverter;
 
@@ -42,10 +38,10 @@ public class SongController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(songRepository.save(nueva));
+                .body(repository.save(nueva));
     }
 
-    private final SongRepository repository;
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Song> findOne(@PathVariable Long id) {
@@ -63,12 +59,22 @@ public class SongController {
     
 
     @PutMapping("/{id}")
-    public ResponseEntity<Song> edit(@RequestBody Song song, @PathVariable Long id){
+    public ResponseEntity<Song> edit(@RequestBody PutSongDto dto, @PathVariable Long id){
+
+        Song edit = dtoConverter.editSongDtoToSong(dto);
+        Artist artist = artistRepository.findById(dto.getArtist().getId()).orElse(null);
+
+        edit.setArtist(artist);
+
+
         return ResponseEntity.of(
                 repository.findById(id).map(s -> {
-                    s.setArtist(song.getArtist());
-                    s.setAlbum(song.getAlbum());
-                    s.setYear(song.getYear());
+                    s.setAlbum(dto.getAlbum());
+                    s.setYear(dto.getYear());
+                    s.setTitle(dto.getTitle());
+                    s.setArtist(artist);
+
+                    repository.save(s);
                     return s;
                 })
         );
