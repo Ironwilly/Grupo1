@@ -23,7 +23,9 @@ public class Playlist {
     private String description;
     @Column
     @ElementCollection
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Song> listSongs;
+
 
 
     public Playlist(String name, String description) {
@@ -32,10 +34,7 @@ public class Playlist {
 
     }
 
-    private String descripcion;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    private List<Song> listSongs;
 
 
 
