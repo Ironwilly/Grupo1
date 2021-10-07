@@ -56,7 +56,7 @@ public class SongController {
                     .noContent()
                     .build();
         }
-        
+
         return ResponseEntity
                 .ok()
                 .body(repository.findAll());
