@@ -2,21 +2,25 @@ package com.salesianostriana.dam.P01.controller;
 
 
 
+
 import com.salesianostriana.dam.P01.dto.CreatePlaylistDto;
 import com.salesianostriana.dam.P01.dto.PlaylistDtoConverter;
 import com.salesianostriana.dam.P01.model.Artist;
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.ArtistRepository;
+
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/lists")
@@ -70,5 +74,11 @@ public class PlaylistController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Playlist> findOne(@PathVariable Long id) {
 
+        return ResponseEntity
+                .of(repository.findById(id));
+
+    }
 }

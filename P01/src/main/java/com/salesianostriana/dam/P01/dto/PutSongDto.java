@@ -4,13 +4,14 @@ import com.salesianostriana.dam.P01.model.Artist;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
-@Data @AllArgsConstructor @NoArgsConstructor
-public class CreateSongDto {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class PutSongDto {
 
     private String title;
     private String album;
     private String year;
-    private Long artistId;
+    private Artist artist;
 }

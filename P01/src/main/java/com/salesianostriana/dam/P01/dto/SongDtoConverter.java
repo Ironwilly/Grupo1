@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.P01.dto;
 
+import com.salesianostriana.dam.P01.model.Artist;
 import com.salesianostriana.dam.P01.model.Song;
 import org.springframework.stereotype.Component;
 
@@ -14,10 +15,20 @@ public class SongDtoConverter {
         );
     }
 
+    public Song editSongDtoToSong(PutSongDto dto){
+        return new Song(
+                dto.getTitle(),
+                dto.getArtist(),
+                dto.getAlbum(),
+                dto.getYear()
+
+        );
+    }
+
     public GetSongDto SongToSongDto(Song s){
         return GetSongDto
                 .builder()
-                .title(s.getTittle())
+                .title(s.getTitle())
                 .album(s.getAlbum())
                 .year(s.getYear())
                 .artist(s.getArtist().getName())
