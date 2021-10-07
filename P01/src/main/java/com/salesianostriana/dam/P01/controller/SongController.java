@@ -46,12 +46,17 @@ public class SongController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Song> findOne(@PathVariable Long id) {
-
         return ResponseEntity.of(repository.findById(id));
     }
 
     @GetMapping("/")
     public ResponseEntity<List<Song>> findAll(){
+        if(repository.findAll().isEmpty()){
+            return ResponseEntity
+                    .noContent()
+                    .build();
+        }
+        
         return ResponseEntity
                 .ok()
                 .body(repository.findAll());
