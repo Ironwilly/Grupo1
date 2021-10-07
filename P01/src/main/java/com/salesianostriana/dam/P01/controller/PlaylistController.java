@@ -31,6 +31,7 @@ public class PlaylistController {
     private final PlaylistRepository playlistRepository;
     private final SongRepository songRepository;
     private final PlaylistDtoConverter playlistDtoConverter;
+    private final PlaylistRepository repository;
 
     @GetMapping("/")
     public ResponseEntity<List<Playlist>> findAll(){
