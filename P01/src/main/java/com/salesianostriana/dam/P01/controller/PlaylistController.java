@@ -78,7 +78,7 @@ public class PlaylistController {
     public ResponseEntity<Playlist> findOne(@PathVariable Long id) {
 
         return ResponseEntity
-                .of(repository.findById(id));
+                .of(playlistRepository.findById(id));
 
     }
 }
