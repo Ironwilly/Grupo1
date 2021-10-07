@@ -1,7 +1,6 @@
 package com.salesianostriana.dam.P01.controller;
 
-import com.salesianostriana.dam.P01.dto.CreatePlaylistDto;
-import com.salesianostriana.dam.P01.dto.PlaylistDtoConverter;
+import com.salesianostriana.dam.P01.dto.*;
 import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.dto.CreatePlaylistDto;
@@ -94,7 +93,11 @@ public class PlaylistController {
         );
 
 
+
+
+
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
         playlistRepository.deleteById(id);
@@ -113,6 +116,21 @@ public class PlaylistController {
 
         return ResponseEntity.noContent().build();
     }
+
+
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> GetPlaylistDto(@RequestBody Playlist playlist,
+                                                    @PathVariable Long id ){
+
+        Optional <Playlist> playlistActual = playlistRepository.findById(id);
+
+        playlistRepository.save(playlistActual.get());
+
+        return ResponseEntity.ok().body(playlistActual.findOne());
+    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Playlist> findOne(@PathVariable Long id) {
