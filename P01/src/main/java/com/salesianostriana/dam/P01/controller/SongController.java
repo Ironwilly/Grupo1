@@ -72,7 +72,6 @@ public class SongController {
 
         edit.setArtist(artist);
 
-
         return ResponseEntity.of(
                 repository.findById(id).map(s -> {
                     s.setAlbum(dto.getAlbum());
