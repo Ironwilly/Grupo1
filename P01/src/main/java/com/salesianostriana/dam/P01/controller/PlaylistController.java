@@ -3,6 +3,7 @@ package com.salesianostriana.dam.P01.controller;
 
 
 import com.salesianostriana.dam.P01.model.Playlist;
+import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,11 @@ public class PlaylistController {
         return ResponseEntity.ok().body(repository.findAll());
 
 
+    }
+
+    @GetMapping("/{id}/songs")
+    public ResponseEntity<Playlist> findPlaylistSongs(@PathVariable Long id) {
+        return ResponseEntity.of(repository.findById(id));
     }
   
   @PostMapping("/")
