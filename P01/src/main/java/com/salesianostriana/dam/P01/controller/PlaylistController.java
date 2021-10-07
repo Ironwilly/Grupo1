@@ -120,7 +120,7 @@ public class PlaylistController {
 
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/list/{id}")
     public ResponseEntity<?> GetPlaylistDto(@RequestBody Playlist playlist,
                                                     @PathVariable Long id ){
 
