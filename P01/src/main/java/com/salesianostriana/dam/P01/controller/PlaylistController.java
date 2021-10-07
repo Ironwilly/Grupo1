@@ -95,6 +95,19 @@ public class PlaylistController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/{id1}/songs/{id2}")
+    public ResponseEntity<?> deleteSongFromPlaylist(@RequestBody Playlist playlist,
+                                                    @PathVariable Long id1,
+                                                    @PathVariable Long id2){
+        Optional <Playlist> playlistActual = playlistRepository.findById(id1);
+
+        playlistActual.get().getSongs().remove(songRepository.findById(id2).get());
+
+        playlistRepository.save(playlistActual.get());
+
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Playlist> findOne(@PathVariable Long id) {
 
