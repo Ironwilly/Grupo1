@@ -20,7 +20,6 @@ public class Playlist {
 
     private String name;
     private String description;
-    private String descripcion;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Song> songs;
@@ -28,5 +27,6 @@ public class Playlist {
     public Playlist(String name, String description) {
         this.name = name;
         this.description = description;
+
     }
 }

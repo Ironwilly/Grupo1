@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 public class PlaylistDtoConverter {
 
     public Playlist createPlaylistDtoToPlaylist(CreatePlaylistDto dto){
-        return new Playlist(
+        return  new Playlist(
                 dto.getName(),
                 dto.getDescription()
         );
     }
 
-    public GetPlaylistDto PlaylistToPlaylistDto(Playlist p){
+    public  GetPlaylistDto playlistToPlaylistDto(Playlist p){
         return GetPlaylistDto
                 .builder()
                 .name(p.getName())
