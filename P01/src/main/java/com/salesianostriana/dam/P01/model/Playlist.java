@@ -19,13 +19,14 @@ public class Playlist {
     private Long id;
 
     private String name;
+    private String description;
     private String descripcion;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Song> listSongs;
+    private List<Song> songs;
 
-
-
-
-
+    public Playlist(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 }
