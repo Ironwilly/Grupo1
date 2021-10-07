@@ -128,7 +128,7 @@ public class PlaylistController {
 
         playlistRepository.save(playlistActual.get());
 
-        return ResponseEntity.ok().body(playlistActual.findOne());
+        return ResponseEntity.ok().body(playlistActual.get());
     }
 
 
