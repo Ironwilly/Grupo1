@@ -7,9 +7,9 @@ import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.dto.CreatePlaylistDto;
 import com.salesianostriana.dam.P01.dto.PlaylistDtoConverter;
 import com.salesianostriana.dam.P01.model.Artist;
-import com.salesianostriana.dam.P01.model.Playlist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.ArtistRepository;
+import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.PlaylistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +37,12 @@ public class PlaylistController {
 
         return ResponseEntity.ok().body(playlistRepository.findAll());
     }
-  
+
+    @GetMapping("/{id}/songs")
+    public ResponseEntity<Playlist> findPlaylistSongs(@PathVariable Long id) {
+        return ResponseEntity.of(repository.findById(id));
+    }
+
     @PostMapping("/")
     public ResponseEntity<Playlist> create(@RequestBody CreatePlaylistDto dto) {
         if(dto.getSongId() == null){
