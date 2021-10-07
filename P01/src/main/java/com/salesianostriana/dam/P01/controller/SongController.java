@@ -7,12 +7,15 @@ import com.salesianostriana.dam.P01.model.Artist;
 import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.ArtistRepository;
 import com.salesianostriana.dam.P01.repos.SongRepository;
+import com.salesianostriana.dam.P01.model.Artist;
+import com.salesianostriana.dam.P01.model.Song;
+import com.salesianostriana.dam.P01.repos.ArtistRepository;
+import com.salesianostriana.dam.P01.repos.SongRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -41,10 +44,9 @@ public class SongController {
                 .body(repository.save(nueva));
     }
 
-
-
     @GetMapping("/{id}")
     public ResponseEntity<Song> findOne(@PathVariable Long id) {
+
         return ResponseEntity.of(repository.findById(id));
     }
 
@@ -56,7 +58,11 @@ public class SongController {
     }
 
 
-    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        repository.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
 
     @PutMapping("/{id}")
     public ResponseEntity<Song> edit(@RequestBody PutSongDto dto, @PathVariable Long id){
@@ -65,7 +71,6 @@ public class SongController {
         Artist artist = artistRepository.findById(dto.getArtist().getId()).orElse(null);
 
         edit.setArtist(artist);
-
 
         return ResponseEntity.of(
                 repository.findById(id).map(s -> {
@@ -79,11 +84,4 @@ public class SongController {
                 })
         );
     }
-  
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        repository.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }

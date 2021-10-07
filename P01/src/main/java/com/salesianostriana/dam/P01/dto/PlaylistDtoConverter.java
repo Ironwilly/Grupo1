@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.P01.dto;
 
 import com.salesianostriana.dam.P01.model.Playlist;
+import com.salesianostriana.dam.P01.model.Song;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +19,7 @@ public class PlaylistDtoConverter {
                 .builder()
                 .name(p.getName())
                 .description(p.getDescription())
+                .songs(p.getSongs())
                 .build();
     }
 }

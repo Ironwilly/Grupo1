@@ -1,6 +1,5 @@
 package com.salesianostriana.dam.P01.dto;
 
-
 import com.salesianostriana.dam.P01.model.Song;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +16,5 @@ public class GetPlaylistDto {
 
     private String name;
     private String description;
-    List<Song> listSongs;
-
-
+    private List<Song> songs;
 }
