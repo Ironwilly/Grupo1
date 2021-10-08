@@ -13,7 +13,7 @@
 Esta API REST permite controlar el funcionamiento de la app Trianafy.
 
 ## Entidades
-***
+
 Las entidades que componen esta API son:
 
 - Artist
@@ -61,6 +61,10 @@ En nuestra API, se han creado los siguientes DTOs:
 
 Las peticiones que se han definido en nuestra API son:
 
+### Artist
+
 - **Añadir artista** : Petición tipo POST.
 - **Ver todos los artistas** : Petición tipo GET.
 - **Buscar artista por ID** : Petición tipo GET.
+- **Editar artista** : Petición tipo PUT.
+- **Eliminar arista** : Petición tipo DELETE.
