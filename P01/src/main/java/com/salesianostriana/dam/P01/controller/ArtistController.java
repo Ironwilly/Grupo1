@@ -1,7 +1,9 @@
 package com.salesianostriana.dam.P01.controller;
 
 import com.salesianostriana.dam.P01.model.Artist;
+import com.salesianostriana.dam.P01.model.Song;
 import com.salesianostriana.dam.P01.repos.ArtistRepository;
+import com.salesianostriana.dam.P01.repos.SongRepository;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/artist")
@@ -23,6 +26,7 @@ import java.util.List;
 public class ArtistController {
 
     private final ArtistRepository repository;
+    private final SongRepository songRepository;
 
     @Operation(summary = "Obtiene una lista de todos los artistas")
     @ApiResponses(value = {
@@ -113,6 +117,21 @@ public class ArtistController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@Parameter(description = "ID del artista a borrar")
                                         @PathVariable Long id) {
+        // 1) Buscar todas las canciones del artista.
+        // 2) Settear a null el artista de estas canciones
+        // 3) Grabar estas canciones en la base de datos
+        // 4) Borrar el artista
+
+        List<Song> canciones = songRepository.findByArtistId(id);
+
+        List<Song> cancionesModificadas = canciones.stream()
+                        .map(c -> {
+                            c.setArtist(null);
+                            return c;
+                        }).collect(Collectors.toList());
+
+        songRepository.saveAll(cancionesModificadas);
+
         repository.deleteById(id);
         return ResponseEntity.noContent().build();
     }

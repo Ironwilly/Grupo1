@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/lists")
@@ -223,10 +224,12 @@ public class PlaylistController {
                     content = {@Content(mediaType = "application/json",
                             schema = @Schema(implementation = Artist.class))})})
     @GetMapping("/{id1}/songs/{id2}")
-    public ResponseEntity<Playlist> findOne(@PathVariable Long id) {
+    public ResponseEntity<Stream<Song>> findOne(@PathVariable Long id1,
+                                                @PathVariable Long id2) {
 
         return ResponseEntity
-                .of(playlistRepository.findById(id));
-
+                .of(playlistRepository.findById(id1)
+                        .map(m -> (m.getSongs().stream().filter(song -> song.getId().equals(id2)))
+                        ));
     }
 }
