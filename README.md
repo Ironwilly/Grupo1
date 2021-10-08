@@ -1,5 +1,30 @@
 # **API TRIANAFY**
 
+                     ___________  _______    __          __      _____  ___        __       _______  ___  ___  
+                    ("     _   ")/"      \  |" \        /""\    (\"   \|"  \      /""\     /"     "||"  \/"  | 
+                     )__/  \\__/|:        | ||  |      /    \   |.\\   \    |    /    \   (: ______) \   \  /  
+                        \\_ /   |_____/   ) |:  |     /' /\  \  |: \.   \\  |   /' /\  \   \/    |    \\  \/   
+                        |.  |    //      /  |.  |    //  __'  \ |.  \    \. |  //  __'  \  // ___)    /   /    
+                        \:  |   |:  __   \  /\  |\  /   /  \\  \|    \    \ | /   /  \\  \(:  (      /   /     
+                         \__|   |__|  \___)(__\_|_)(___/    \___)\___|\____\)(___/    \___)\__/     |___/      
+
+                                            ,_______________________________________,
+                                            /   HHH*                          *HHH   /.
+                                            `---------------------------------------" :
+                                            | +              2DAM 21/22           + | :
+                                            |             .____________.            | :
+                                            |       .++.  |######\  /##|  .++.      | :
+                                            |       +  +  |######/  \##|  +  +      | :
+                                            |       '++'  '------------'  '++'      | :
+                                            |                                       | :
+                                            |                                       | :
+                                            |                                       | :
+                                            |      /'''''''''''''''''''''''''\      I :
+                                            |     /     o       0         o   \     I :
+                                            |+   / O                         O \   +|,'
+                                            `---------------------------------------`
+
+
 ## Desarrollada por :
 
 ### Grupo 1
@@ -10,7 +35,12 @@
 #### - Moisés Miranda Corrales
 ***
 
-Esta API REST permite controlar el funcionamiento de la app Trianafy.
+Esta API REST permite controlar el funcionamiento de la app Trianafy, la cual gestiona información musical. 
+Esto incluye las siguientes funcionalidades:
+
+- Las peticiones que se detallan más abajo.
+- La docuementación generada con OpenApi 3.0 y Swagger.
+- Una colección de Postman con las peticiones generadas en JSON para poder realizar pruebas de la app.
 
 ## Entidades
 
@@ -68,3 +98,23 @@ Las peticiones que se han definido en nuestra API son:
 - **Buscar artista por ID** : Petición tipo GET.
 - **Editar artista** : Petición tipo PUT.
 - **Eliminar arista** : Petición tipo DELETE.
+
+### Song
+
+- **Añadir canción** : Petición tipo POST.
+- **Ver todos las canciones** : Petición tipo GET.
+- **Buscar canción por ID** : Petición tipo GET.
+- **Editar canción** : Petición tipo PUT.
+- **Eliminar canción** : Petición tipo DELETE.
+
+### Playlist
+
+- **Añadir playlist** : Petición tipo POST.
+- **Ver todos las playlist** : Petición tipo GET.
+- **Buscar plyalist por ID** : Petición tipo GET.
+- **Editar playlist** : Petición tipo PUT.
+- **Eliminar playlist** : Petición tipo DELETE.
+- **Añadir canción a playlist** : Petición tipo POST.
+- **Ver todas las canciones de una playlist** : Petición tipo GET.
+- **Buscar una canción de una playlist por su ID** : Petición tipo GET.
+- **Eliminar una canción de una playlist** : Petición tipo DELETE.
