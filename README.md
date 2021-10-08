@@ -58,3 +58,9 @@ En nuestra API, se han creado los siguientes DTOs:
 - **GetPlaylistDto**
 - **CreatePlaylistDto**
 - **PlaylistDtoConverter**
+
+Las peticiones que se han definido en nuestra API son:
+
+- **Añadir artista** : Petición tipo POST.
+- **Ver todos los artistas** : Petición tipo GET.
+- **Buscar artista por ID** : Petición tipo GET.
